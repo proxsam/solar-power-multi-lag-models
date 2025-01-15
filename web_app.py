@@ -431,8 +431,8 @@ def preprocess_data(df, latitude, longitude, altitude):
     non_linear_train = nonlinear_features(non_linear_train,latitude,longitude,altitude) 
     non_linear_test = nonlinear_features(non_linear_test,latitude,longitude,altitude)
 
-    non_linear_train.fillna(method='bfill', inplace=True)
-    non_linear_test.fillna(method='bfill', inplace=True) 
+    non_linear_train.bfill(inplace=True)
+    non_linear_test.bfill(inplace=True)
 
     # Calculate solar position
     def calculate_solar_zenith_angle(df, latitude, longitude, altitude):
