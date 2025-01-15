@@ -451,8 +451,8 @@ def create_dashboard():
     # Load and preprocess data
     df = pd.read_csv("seci2024_mar_dec_weather.csv")
     processed_df, processed_df_test = preprocess_data(df, LATITUDE, LONGITUDE, ALTITUDE)
-    processed_df.fillna(method='bfill', inplace=True)
-
+    processed_df.bfill(inplace=True)
+    
     # Create placeholders for real-time updates
     button_placeholder = st.empty()
     status_placeholder = st.empty()
