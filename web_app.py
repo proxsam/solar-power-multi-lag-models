@@ -206,7 +206,7 @@ class RollingPredictionSystem:
             for lag, value in rmse.items():
                 print(f"  {lag} lag: {value:.4f}")
 
-            plot.savefig(f'plots/predictions_hour_{hour}.png')
+            plot.savefig(f'predictions_hour_{hour}.png')
             plt.close()
 
         return results
@@ -615,7 +615,7 @@ def create_dashboard():
                 break
             
             # Save the plot
-            plot_path = f'plots/predictions_hour_{hour}.png'
+            plot_path = f'predictions_hour_{hour}.png'
             plot.savefig(plot_path)
             plt.close()
 
@@ -643,7 +643,7 @@ def create_dashboard():
     
     # Show all predictions view
     if st.session_state.predictions_complete and getattr(st.session_state, 'show_all', False):
-        plot_files = glob('plots/predictions_hour_*.png')
+        plot_files = glob('predictions_hour_*.png')
         available_hours = sorted([int(f.split('_')[-1].split('.')[0]) for f in plot_files])
         
         selected_hour = st.selectbox(
@@ -653,7 +653,7 @@ def create_dashboard():
         )
 
         if selected_hour:
-            plot_path = f'plots/predictions_hour_{selected_hour}.png'
+            plot_path = f'predictions_hour_{selected_hour}.png'
             if os.path.exists(plot_path):
                 plot_placeholder.image(plot_path, caption=f"Predictions vs Actual at {selected_hour:02d}:00")
                 
